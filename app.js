@@ -7,6 +7,7 @@ const http = require("http");
 const bodyParser = require("body-parser");
 
 const userRoute = require('./router/UserRouter');
+const discussionRoute = require('./router/DiscussionRouter');
 
 //DEFINING MODULES
 const app = express();
@@ -33,6 +34,7 @@ connection.once("open", () => {
 
 //SENDING TO ROUTES
 app.use("/api/user",userRoute);
+app.use("/api/discussion",discussionRoute);
 
 //STARTING APP
 app.listen(process.env.PORT || 3001, () => {
