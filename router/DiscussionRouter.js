@@ -220,4 +220,19 @@ discussionRouter.post(
   })
 );
 
+discussionRouter.post(
+  "/search",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const search = req.body.search;
+      let searchPattern = new RegExp(search, "i");
+      const discussion = await Discussion.find({ title: searchPattern });
+      return res.status(200).send(discussion);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).send({ message: "Internal server error!" });
+    }
+  })
+);
+
 module.exports = discussionRouter;
