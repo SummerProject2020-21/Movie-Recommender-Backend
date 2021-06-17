@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../model/User");
 const expressAsyncHandler = require("express-async-handler");
 const env = require("dotenv");
+const { create } = require("../model/User");
 
 const userRouter = express.Router();
 
@@ -55,6 +56,7 @@ userRouter.post(
                   firstName: firstName,
                   lastName: lastName,
                   email: email,
+                  uid: createUser._id,
                 },
               });
             }
